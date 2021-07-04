@@ -1,9 +1,29 @@
 
 #contenitoreGioco {
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* flex-direction: column; */
+    /* width: auto; */
+    /* align-content: center; */
+    /* flex-direction: row; */
+    /* flex-wrap: nowrap; */
 }
 
+
+
+#schermoInfoPartita {
+    /* display: flex;
+    justify-content: center; */
+    text-align: center;
+    border: 1px solid gray;
+    margin: 0% 10%;
+}
+
+#divGioco{
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+}
 table {
     border: 2px solid rgb(0, 0, 146);
     background-color: blue;
