@@ -10,13 +10,14 @@
 }
 
 
-
 #schermoInfoPartita {
     /* display: flex;
     justify-content: center; */
     text-align: center;
     border: 1px solid gray;
+    background-color: gray;
     margin: 0% 10%;
+    text-shadow: 1px 1px 1px black;
 }
 
 #divGioco{
@@ -24,6 +25,7 @@
     justify-content: center;
     margin-top: 2%;
 }
+
 table {
     border: 2px solid rgb(0, 0, 146);
     background-color: blue;
@@ -37,6 +39,8 @@ td{
     border: 2px solid rgb(0, 0, 146);
     background-color: gray;
     border-radius: 100%;
+    min-height: 60px;
+    min-width: 60px;
     height: 60px;
     width: 60px;
     box-shadow: 1px 1px 3px #000000;
