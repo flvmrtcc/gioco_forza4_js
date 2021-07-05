@@ -1,3 +1,4 @@
+// Martucci Flavio - flavio.martucci.fm@gmail.com
 
 function Forza4() {
     let matrice = [             // 0 cella vuota, 1 giocatore1, 2 giocatore2
@@ -11,6 +12,7 @@ function Forza4() {
     let numeroRighe = 6;
     let numeroColonne = 7;
     let utenteCorrente = 1;
+    let partitaInCorso = true;
 
 
     this.creaTabellaGioco = function () {
@@ -33,10 +35,8 @@ function Forza4() {
 
     let stringaGiocatoreCorrente = function () {
         let colore;
-        if (utenteCorrente == 1)
-            colore = "red";
-        else
-            colore = "yellow";
+        if (utenteCorrente == 1) colore = "red";
+        else colore = "yellow";
         document.getElementById("schermoInfoPartita").getElementsByTagName("h2")[0].innerHTML = `Turno del giocatore ${utenteCorrente}`;
         document.getElementById("schermoInfoPartita").getElementsByTagName("h2")[0].style = `color: ${colore}`;
     }
@@ -48,12 +48,15 @@ function Forza4() {
         let rigaCellaCliccata = parseInt(numeroCellaCliccata / numeroColonne);
         let colonnaCellaCliccata = numeroCellaCliccata % numeroColonne;
 
-        if (cellaVuota(rigaCellaCliccata, colonnaCellaCliccata)) {
-            posizionaNellaRigaPiuBassaLibera(colonnaCellaCliccata);
-            // mostraCella(numeroCellaCliccata, rigaCellaCliccata, colonnaCellaCliccata);
-            forza4.mostraCelle();
-            utenteSuccessivo();
-
+        if (partitaInCorso) {
+            if (cellaVuota(rigaCellaCliccata, colonnaCellaCliccata)) {
+                posizionaNellaRigaPiuBassaLibera(colonnaCellaCliccata);
+                // mostraCella(numeroCellaCliccata, rigaCellaCliccata, colonnaCellaCliccata);
+                forza4.mostraCelle();
+                controllaPossibiliVincite();
+                if (partitaInCorso)
+                    utenteSuccessivo();
+            }
         }
 
     }
@@ -64,7 +67,7 @@ function Forza4() {
         return false;
     }
 
-    let posizionaNellaRigaPiuBassaLibera = function (colonnaCellaCliccata) {
+    let posizionaNellaRigaPiuBassaLibera = function (colonnaCellaCliccata) {        // posiziona la pedina nella cella più bassa libera
         let cellaOccupata = true;
         let r = numeroRighe - 1;
         do {
@@ -78,11 +81,9 @@ function Forza4() {
     }
 
 
-    let utenteSuccessivo = function () {
-        if (utenteCorrente == 1)
-            utenteCorrente = 2;
-        else
-            utenteCorrente = 1;
+    let utenteSuccessivo = function () {    // cambia l'utente che deve effettuare la giocata
+        if (utenteCorrente == 1) utenteCorrente = 2;
+        else utenteCorrente = 1;
         stringaGiocatoreCorrente();
     }
 
@@ -119,6 +120,133 @@ function Forza4() {
             cella.getElementsByClassName("cellaPedina")[0].style = "background-color: gray;";
         }
     }
+
+    let controllaPossibiliVincite = function () {
+        for (let r = 0; r < numeroRighe; r++) {
+            for (let c = 0; c < numeroColonne; c++) {
+                if (matrice[r][c] == utenteCorrente) {      // scorre tutta la matrice e controlla le celle del colore dell'utente che ha appena giocato
+                    controllaPedineVicine(r, c);
+                }
+            }
+        }
+    }
+
+    let contatoreSerieUguali = 0;
+
+    let controllaPedineVicine = function (r, c) {
+        // contatoreSerieUguali = 1;
+        // controlloDirezione1(r, c);
+        // contatoreSerieUguali = 1;
+        // controlloDirezione2(r, c);
+        // contatoreSerieUguali = 1;
+        // controlloDirezione3(r, c);
+        contatoreSerieUguali = 1;
+        controlloDirezione4(r, c);
+        contatoreSerieUguali = 1;
+        controlloDirezione5(r, c);
+        contatoreSerieUguali = 1;
+        controlloDirezione6(r, c);
+        contatoreSerieUguali = 1;
+        controlloDirezione7(r, c);
+        // contatoreSerieUguali = 1;
+        // controlloDirezione8(r, c);
+    }
+
+    // let controlloDirezione1 = function (r, c) {
+    //     if (r > 0 && c > 0) {
+    //         r -= 1;
+    //         c -= 1;
+    //         if (confrontaPedine(r, c) == true) {
+    //             controlloDirezione1(r, c);
+    //         }
+    //     }
+    // }
+    // let controlloDirezione2 = function (r, c) {
+    //     if (r > 0) {
+    //         r -= 1;
+    //         if (confrontaPedine(r, c) == true) {
+    //             controlloDirezione2(r, c);
+    //         }
+    //     }
+    // }
+    // let controlloDirezione3 = function (r, c) {
+    //     if (r > 0 && c < numeroColonne - 1) {
+    //         r -= 1;
+    //         c += 1;
+    //         if (confrontaPedine(r, c) == true) {
+    //             controlloDirezione3(r, c);
+    //         }
+    //     }
+    // }
+
+    let controlloDirezione4 = function (r, c) {
+        if (c < numeroColonne - 1) {
+            c += 1;
+            if (confrontaPedine(r, c) == true) {
+                controlloDirezione4(r, c);
+            }
+        }
+    }
+
+    let controlloDirezione5 = function (r, c) {
+        if (r < numeroRighe - 1 && c < numeroColonne - 1) {
+            r += 1;
+            c += 1;
+            if (confrontaPedine(r, c) == true) {
+                controlloDirezione5(r, c);
+            }
+        }
+    }
+
+    let controlloDirezione6 = function (r, c) {
+        if (r < numeroRighe - 1) {
+            r += 1;
+            if (confrontaPedine(r, c) == true) {
+                controlloDirezione6(r, c);
+            }
+        }
+    }
+
+    let controlloDirezione7 = function (r, c) {
+        if (r < numeroRighe - 1 && c > 0) {
+            r += 1;
+            c -= 1;
+            if (confrontaPedine(r, c) == true) {
+                controlloDirezione7(r, c);
+            }
+        }
+    }
+
+    // let controlloDirezione8 = function (r, c) {
+    //     if (c > 0) {
+    //         c -= 1;
+    //         if (confrontaPedine(r, c) == true) {
+    //             controlloDirezione8(r, c);
+    //         }
+    //     }
+    // }
+
+
+
+    let confrontaPedine = function (r, c) {
+        if (matrice[r][c] == utenteCorrente) {
+            // console.log("Riga= " + r + ", Colonna= " + c);
+            contatoreSerieUguali += 1;
+            // console.log(contatoreSerieUguali);
+            if (contatoreSerieUguali == 4) {
+                // console.log(`${utenteCorrente} ha vinto la partita!`);
+                document.getElementById("schermoInfoPartita").getElementsByTagName("h2")[0].innerHTML = `Ha vinto il giocatore ${utenteCorrente}!`;
+                // document.getElementById("schermoInfoPartita").getElementsByTagName("h2")[0].style = `color: ${colore}`;
+                partitaInCorso = false;
+            }
+            return true;
+        }
+        else {
+            contatoreSerieUguali = 0;
+            return false;
+        }
+    }
+
 
 
 }
