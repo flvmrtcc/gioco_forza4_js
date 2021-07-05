@@ -19,7 +19,7 @@ function Forza4() {
         for (let r = 0; r < numeroRighe; r++) {
             strTab += "<tr>";
             for (let c = 0; c < numeroColonne; c++) {
-                strTab += `<td id="cella_${numCella}"></td>`;
+                strTab += `<td id="cella_${numCella}"><div class="cellaPedina"></div></td>`;
                 numCella++;
             }
             strTab += "</tr>";
@@ -50,7 +50,6 @@ function Forza4() {
 
         if (cellaVuota(rigaCellaCliccata, colonnaCellaCliccata)) {
             posizionaNellaRigaPiuBassaLibera(colonnaCellaCliccata);
-            // matrice[rigaCellaCliccata][colonnaCellaCliccata] = utenteCorrente;
             // mostraCella(numeroCellaCliccata, rigaCellaCliccata, colonnaCellaCliccata);
             forza4.mostraCelle();
             utenteSuccessivo();
@@ -109,13 +108,15 @@ function Forza4() {
     let mostraCella = function (posCorrenteTabella, riga, colonna) {
         let cella = document.getElementsByTagName("td")[posCorrenteTabella];
         if (matrice[riga][colonna] == 1) {
-            cella.style = "background-color: red;";
+            cella.getElementsByClassName("cellaPedina")[0].style = "background-color: red;";
+            cella.style = "background-color: blue;";
         }
         else if (matrice[riga][colonna] == 2) {
-            cella.style = "background-color: yellow;";
+            cella.getElementsByClassName("cellaPedina")[0].style = "background-color: yellow;";
+            cella.style = "background-color: blue;";
         }
         else {
-            cella.style = "background-color: gray;";
+            cella.getElementsByClassName("cellaPedina")[0].style = "background-color: gray;";
         }
     }
 
