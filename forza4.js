@@ -134,97 +134,53 @@ function Forza4() {
     let contatoreSerieUguali = 0;
 
     let controllaPedineVicine = function (r, c) {
-        // contatoreSerieUguali = 1;
-        // controlloDirezione1(r, c);
-        // contatoreSerieUguali = 1;
-        // controlloDirezione2(r, c);
-        // contatoreSerieUguali = 1;
-        // controlloDirezione3(r, c);
+        contatoreSerieUguali = 1;
+        controlloDirezione1(r, c);
+        contatoreSerieUguali = 1;
+        controlloDirezione2(r, c);
+        contatoreSerieUguali = 1;
+        controlloDirezione3(r, c);
         contatoreSerieUguali = 1;
         controlloDirezione4(r, c);
-        contatoreSerieUguali = 1;
-        controlloDirezione5(r, c);
-        contatoreSerieUguali = 1;
-        controlloDirezione6(r, c);
-        contatoreSerieUguali = 1;
-        controlloDirezione7(r, c);
-        // contatoreSerieUguali = 1;
-        // controlloDirezione8(r, c);
     }
 
-    // let controlloDirezione1 = function (r, c) {
-    //     if (r > 0 && c > 0) {
-    //         r -= 1;
-    //         c -= 1;
-    //         if (confrontaPedine(r, c) == true) {
-    //             controlloDirezione1(r, c);
-    //         }
-    //     }
-    // }
-    // let controlloDirezione2 = function (r, c) {
-    //     if (r > 0) {
-    //         r -= 1;
-    //         if (confrontaPedine(r, c) == true) {
-    //             controlloDirezione2(r, c);
-    //         }
-    //     }
-    // }
-    // let controlloDirezione3 = function (r, c) {
-    //     if (r > 0 && c < numeroColonne - 1) {
-    //         r -= 1;
-    //         c += 1;
-    //         if (confrontaPedine(r, c) == true) {
-    //             controlloDirezione3(r, c);
-    //         }
-    //     }
-    // }
-
-    let controlloDirezione4 = function (r, c) {
+    let controlloDirezione1 = function (r, c) {
         if (c < numeroColonne - 1) {
             c += 1;
+            if (confrontaPedine(r, c) == true) {
+                controlloDirezione1(r, c);
+            }
+        }
+    }
+
+    let controlloDirezione2 = function (r, c) {
+        if (r < numeroRighe - 1 && c < numeroColonne - 1) {
+            r += 1;
+            c += 1;
+            if (confrontaPedine(r, c) == true) {
+                controlloDirezione2(r, c);
+            }
+        }
+    }
+
+    let controlloDirezione3 = function (r, c) {
+        if (r < numeroRighe - 1) {
+            r += 1;
+            if (confrontaPedine(r, c) == true) {
+                controlloDirezione3(r, c);
+            }
+        }
+    }
+
+    let controlloDirezione4 = function (r, c) {
+        if (r < numeroRighe - 1 && c > 0) {
+            r += 1;
+            c -= 1;
             if (confrontaPedine(r, c) == true) {
                 controlloDirezione4(r, c);
             }
         }
     }
-
-    let controlloDirezione5 = function (r, c) {
-        if (r < numeroRighe - 1 && c < numeroColonne - 1) {
-            r += 1;
-            c += 1;
-            if (confrontaPedine(r, c) == true) {
-                controlloDirezione5(r, c);
-            }
-        }
-    }
-
-    let controlloDirezione6 = function (r, c) {
-        if (r < numeroRighe - 1) {
-            r += 1;
-            if (confrontaPedine(r, c) == true) {
-                controlloDirezione6(r, c);
-            }
-        }
-    }
-
-    let controlloDirezione7 = function (r, c) {
-        if (r < numeroRighe - 1 && c > 0) {
-            r += 1;
-            c -= 1;
-            if (confrontaPedine(r, c) == true) {
-                controlloDirezione7(r, c);
-            }
-        }
-    }
-
-    // let controlloDirezione8 = function (r, c) {
-    //     if (c > 0) {
-    //         c -= 1;
-    //         if (confrontaPedine(r, c) == true) {
-    //             controlloDirezione8(r, c);
-    //         }
-    //     }
-    // }
 
 
 
