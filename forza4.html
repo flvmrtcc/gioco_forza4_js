@@ -1,26 +1,73 @@
 <!-- Martucci Flavio - flavio.martucci.fm@gmail.com -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
-    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <script src="forza4.js"></script>
+
     <link href="forza4.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="/img/g2.png" type="image/png" />
     <title>Forza 4</title>
+
+    <style>
+        body {
+            background-image: url('../../img/sfondo.gif');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
 </head>
 
 <body>
-    <h1 style="text-align: center;">Forza 4</h1>
+    <!-- NAVBAR -->
+    <nav class="navbartop">
+        <a class="logoLeft" href="#">
+            <img src="../../img/logo.png" alt="" width="30" height="30" class="logoNavbar">
+        </a>
+        <div class="divNavbarTop">
+            <div class="nomeGiocoNavbarTop">
+                FORZA 4
+            </div>
+        </div>
+    </nav>
 
-    <div id="contenitoreGioco"></div>
+    <!-- SCHERMATA INIZIALE -->
+    <div id="contenitoreSchermataIniziale">
+        <div class="titoloSchermataGioca">FORZA QUATTRO</div>
+        <button id="bottone-gioca" onclick="gioca()">GIOCA</button>
+    </div>
 
+    <!-- SCHERMATA GIOCO -->
+    <div id="container" style="display: none;">
+        <div id="row-2">
+            <div id="box-1">
+                <div class="bottone-menù" onclick="tornaAlMenu()">
+                    <button id="bottone-tornaAlMenù">TORNA AL MENU</button>
+                </div>
+                <div class="bottone-menù" onclick="rigioca()">
+                    <button id="bottone-rigioca" style="display: none;">RIGIOCA</button>
+                </div>
+            </div>
+            <div id="box-2">
+                <div id="contenitoreGioco"></div>
+            </div>
+            <div id="box-3">
+                <div id="box-3-tempoTrascorso"></div>
+            </div>
+        </div>
+        <div id="row-3">
+            <div></div>
+        </div>
+    </div>
 
     <script>
         let forza4 = new Forza4();
-        forza4.creaTabellaGioco();
-        forza4.mostraCelle();
 
     </script>
 
